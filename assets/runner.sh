@@ -158,14 +158,13 @@ mkdir -p $HOME/.tap
 TAP_LOCKFILE=${HOME}/.tap/${SLURM_JOB_ID}.lock
 sleep 1
 DISPLAY=:0 xterm -fg white -bg red3 +sb -geometry 55x2+0+0 -T 'END SESSION HERE' -e "echo 'TACC: Press <enter> in this window to end your session' && read && rm ${TAP_LOCKFILE}" &
-sleep 1
+sleep 3
 
-DISPLAY=:0 xterm -ls -geometry 80x24+100+50 -e 'singularity exec docker://napari/napari:0.4.10 napari' &
-#DISPLAY=:0 xterm -ls -geometry 80x24+100+50 -e 'python3 -m napari' &
-
+DISPLAY=:0 xterm -ls -geometry 80x24+100+50 -e  'singularity exec docker://tiffhuff/napari:0.0.1 python3 -m napari'
 
 
-sleep 1
+
+sleep 3
 
 echo $(date) > ${TAP_LOCKFILE}
 while [ -f ${TAP_LOCKFILE} ]; do
